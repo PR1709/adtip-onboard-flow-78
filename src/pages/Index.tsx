@@ -1,7 +1,8 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Play, Phone, GamepadIcon, Download, Coins } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import MobileOnboarding from "@/components/mobile/MobileOnboarding";
 
 const WalkthroughSlide = ({ 
   title, 
@@ -158,7 +159,13 @@ const InstallIllustration = () => (
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useIsMobile();
   
+  // If mobile, render the mobile-optimized component
+  if (isMobile) {
+    return <MobileOnboarding />;
+  }
+
   const slides = [
     {
       title: "Welcome to Adtip",
